@@ -4,6 +4,7 @@ import CpfServices from './components/services/services';
 import { MainDashboard } from './components/dashboard/defaultDashboard';
 import { Calculator } from './components/calculator/calculator';
 import SimpleDialogDemo from './components/walkthrough/walkthrough';
+import Container from '@material-ui/core/Container';
 import './App.css';
 
 class App extends React.Component {
@@ -49,7 +50,9 @@ class App extends React.Component {
           <CpfServices change={this.changeType}/>
         </div>
         <div className="cpf-dashboard">
-          {this.renderSwtich()}
+          <Container>
+            {this.renderSwtich()}
+          </Container>
         </div>
       </div>
     );

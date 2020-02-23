@@ -7,7 +7,7 @@ import houseLogo from '../../assets/cpf-svg/architecture-and-city.svg';
 import hospitalLogo from '../../assets/cpf-svg/hospital.svg';
 import gradHatLogo from '../../assets/cpf-svg/graduation-hat.svg';
 import calcLogo from '../../assets/cpf-svg/calculator.svg';
-
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles(theme => ({
     title: {
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
         margin: '2rem',
     },
     grid: {
-        margin: '2rem'
+        margin: '2rem',
     }
 })); 
 
@@ -31,7 +31,7 @@ export default function CpfServices(props) {
     const classes = useStyles();
 
     return(
-        <div>
+        <Container>
             <Typography className={classes.title} variant="h5">Cpf Services</Typography>
             <Grid container spacing={4} className={classes.grid}>
                 {
@@ -44,6 +44,6 @@ export default function CpfServices(props) {
                     )
                 }
             </Grid>
-      </div>
+      </Container>
     );
 }
