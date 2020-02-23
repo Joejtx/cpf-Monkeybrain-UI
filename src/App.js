@@ -1,35 +1,55 @@
 import React from 'react';
 import SearchAppBar from './components/header/header'; 
 import CpfServices from './components/services/services';
-import { CpfDashboard } from './components/dashboard/dashboardClass';
-import { DefaultDashboard } from './components/dashboard/defaultDashboard';
+import { MainDashboard } from './components/dashboard/defaultDashboard';
+import { Calculator } from './components/calculator/calculator';
+import SimpleDialogDemo from './components/walkthrough/walkthrough';
 import './App.css';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      'dashboard': <DefaultDashboard />
+      dashboardtype: null
+    }
+    this.changeType = this.changeType.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      dashboardtype : 'main'
+    })
+  }
+  renderSwtich() {
+    switch(this.state.dashboardtype) {
+      case 'main':
+        return <MainDashboard />
+      case 'calculator':
+        return <Calculator />
+      case 'housing':
+        return <SimpleDialogDemo />
+      default:
+        return ''
     }
   }
 
-  // componentDidMount() {
-  //   this.setState({
-  //     dashboard: 
-  //   })
-  // }
+  changeType(param) {
+    this.setState({
+      dashboardtype: param 
+    })
+  }
 
   render() {
     return(
       <div className="App">
         <div className="header">
-          <SearchAppBar />
+          <SearchAppBar change={this.changeType}/>
         </div>
         <div className="cpf-services">
-          <CpfServices />
+          <CpfServices change={this.changeType}/>
         </div>
         <div className="cpf-dashboard">
-          <CpfDashboard Component={this.state.dashboard} />
+          {this.renderSwtich()}
         </div>
       </div>
     );

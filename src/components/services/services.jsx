@@ -8,6 +8,7 @@ import hospitalLogo from '../../assets/cpf-svg/hospital.svg';
 import gradHatLogo from '../../assets/cpf-svg/graduation-hat.svg';
 import calcLogo from '../../assets/cpf-svg/calculator.svg';
 
+
 const useStyles = makeStyles(theme => ({
     title: {
         fontWeight : theme.typography.fontWeightBold,
@@ -26,7 +27,7 @@ const logos = [
     ["calculator", calcLogo]
 ]
 
-export default function CpfServices() {
+export default function CpfServices(props) {
     const classes = useStyles();
 
     return(
@@ -38,6 +39,7 @@ export default function CpfServices() {
                         <ServiceCard 
                             title={key[0]}
                             imagePath={key[1]}
+                            change={props.change}
                         />
                     )
                 }

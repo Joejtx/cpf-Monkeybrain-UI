@@ -7,6 +7,9 @@ import InputBase from '@material-ui/core/InputBase';
 import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
+import Avatar from '@material-ui/core/Avatar';
+import cpfLogo from '../../assets/cpf-svg/logo-CPF-web.png'
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -54,29 +57,34 @@ const useStyles = makeStyles(theme => ({
         width: '100%',
         [theme.breakpoints.up('sm')]: {
             width: 300,
-            '&:focus': {
-                width: 400,
-            },
         },
     },
     flushRight: {
         alignItems: 'right',
     },
+    large: {
+        width: theme.spacing(16),
+        height: theme.spacing(7),
+      },
 }));
 
-export default function SearchAppBar() {
+export default function SearchAppBar(props) {
   const classes = useStyles();
-
+  
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar className={classes.root}>
-            <Typography className={classes.title} variant="h6" noWrap>
-                CPF-LOGO-HERE
-            </Typography>
+            <a href="">
+                <Avatar variant="square" 
+                        className={classes.large} 
+                        src={cpfLogo}
+                        onClick={() => props.change('main')}        
+                />
+            </a>
             <div className={classes.search}>
                 <div className={classes.searchIcon}>
-                <SearchIcon />
+                    <SearchIcon />
                 </div>
                 <InputBase
                 placeholder="Search…"
@@ -98,8 +106,8 @@ export default function SearchAppBar() {
                     // onClick={handleMenu}
                     color="inherit"
                 >
-                <AccountCircle />
-            </IconButton>
+                    <AccountCircle />
+                </IconButton>
             </div>  
         </Toolbar>
       </AppBar>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { DashboardCard } from '../card/card'
+import { CpfDashboard } from './dashboardClass';
 
 const dashDetails = {
     "details": [
@@ -27,14 +28,22 @@ const dashDetails = {
     ]
 }
 
-export const DefaultDashboard = function() {
+const DefaultDashboard = function() {
     return(
         <div>
             {
                 dashDetails.details.map((elem) => 
                     <DashboardCard title={elem.title} value={elem.value} moreInfo={elem.moreInfo}/>
-                )  
+                )
             }
+        </div>
+    );
+}
+
+export const MainDashboard = function() {
+    return(
+        <div>
+            <CpfDashboard Component={<DefaultDashboard />} />
         </div>
     );
 }
