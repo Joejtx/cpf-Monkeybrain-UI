@@ -33,17 +33,22 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-export default LoanRepayForm = function() {
+export default function LoanRepayForm() {
+    const principal = 0
+    const monthlyPayment = 0 
+    const ir = 0
+
     const calculateResult = () => {
         const value = 0
         try {
-            value = Math.log(this.state.principal / this.state.monthlyPayment) / Math.log(1+this.state.ir/12)
+            value = Math.log(principal / monthlyPayment) / Math.log(1+ir/12)
         } 
         catch(e) {
             return "NIL"
         }
         return value
     }
+
     const classes = useStyles();
 
     React.useEffect(() => {
@@ -55,7 +60,7 @@ export default LoanRepayForm = function() {
 
     return (
         <div>
-            <form className={this.state.classes.root} noValidate autoComplete="off">
+            <form className={classes.root} noValidate autoComplete="off">
                 <div id="loadcss">
                     <Grid container spacing={4}>
                         <Grid item xs={6}>
@@ -68,11 +73,11 @@ export default LoanRepayForm = function() {
                         />
                         </Grid>
                         <Grid item xs={6}>
-                            <div className={this.state.classes.margin}>
+                            <div className={classes.margin}>
                                 <Typography>
                                     Loan Amount
                                 </Typography>
-                                <Grid container spacing={1} alignItems="center" className={this.state.classes.paper}>
+                                <Grid container spacing={1} alignItems="center" className={classes.paper}>
                                     <Grid item>
                                         <AttachMoney />
                                     </Grid>
@@ -88,11 +93,11 @@ export default LoanRepayForm = function() {
                     </Grid>
                     <Grid container spacing={4}>
                         <Grid item xs={6}>
-                            <div className={this.state.classes.margin}>
+                            <div className={classes.margin}>
                                 <Typography>
                                     Interest Rate(per annum)
                                 </Typography>
-                                <Grid container spacing={1} alignItems="center" className={this.state.classes.paper}>
+                                <Grid container spacing={1} alignItems="center" className={classes.paper}>
                                     <Grid item>
                                         <TextField 
                                             id="interest-rate" 
@@ -106,11 +111,11 @@ export default LoanRepayForm = function() {
                             </div>
                         </Grid>
                         <Grid item xs={6}>
-                            <div className={this.state.classes.margin}>
+                            <div className={classes.margin}>
                                 <Typography>
                                     Monthly Installment
                                 </Typography>
-                                <Grid container spacing={1} alignItems="center" className={this.state.classes.paper}>
+                                <Grid container spacing={1} alignItems="center" className={classes.paper}>
                                     <Grid item>
                                         <AttachMoney />
                                     </Grid>
@@ -128,7 +133,7 @@ export default LoanRepayForm = function() {
             </form>
 
             <div className="results">
-                <Typography className={this.state.classes.margin} variant="h5">
+                <Typography className={classes.margin} variant="h5">
                     Results 
                 </Typography>
                 <DashboardCard title="Loan Repayment Period (in years)" value={calculateResult()}/>
