@@ -34,22 +34,52 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function LoanRepayForm() {
-    const principal = 0
-    const monthlyPayment = 0 
-    const ir = 0
+    let principal = 0
+    let ir = 0
+    let monthlyPayment = 0;
+    const classes = useStyles();
 
-    const calculateResult = () => {
-        const value = 0
-        try {
-            value = Math.log(principal / monthlyPayment) / Math.log(1+ir/12)
-        } 
-        catch(e) {
-            return "NIL"
+    function handleValue(item, value) {
+        switch(item) {
+            case 'principal':
+                principal = value
+                result = renderResult()
+                
+            case 'monthly':
+                monthlyPayment = value
+                result = renderResult()
+                
+            case 'ir':
+                ir = value
+                result = renderResult()
+                
         }
-        return value
+    }
+        
+   function renderResult() {
+        return(
+            <DashboardCard title="Loan Repayment Period (in years)" value={(0.649*12).toFixed(2)}/>
+        )
     }
 
-    const classes = useStyles();
+    function calculateResult() {
+        let value = 0
+        try {
+            value = Math.log(principal / monthlyPayment) / Math.log(1+ir/12)
+            console.log(value)
+        } 
+        catch(e) {
+            console.log(e)
+            return "NIL"
+        }
+        if (isNaN(value)) {
+            return "NIL"
+        } else {
+            return value
+        }
+    }
+
+    let result = renderResult()
 
     React.useEffect(() => {
         loadCSS(
@@ -85,6 +115,7 @@ export default function LoanRepayForm() {
                                         <TextField 
                                             id="loan-amount" 
                                             label="Total Loan Amount" 
+                                            onChange={(event) => handleValue('principal', event.target.value)}
                                         />
                                     </Grid>
                                 </Grid>
@@ -102,6 +133,7 @@ export default function LoanRepayForm() {
                                         <TextField 
                                             id="interest-rate" 
                                             label="Enter interest rate in %" 
+                                            onChange={(event) => handleValue('ir', event.target.value)}
                                         />
                                     </Grid>
                                     <Grid item>
@@ -123,6 +155,7 @@ export default function LoanRepayForm() {
                                         <TextField 
                                             id="monthly-installment" 
                                             label="Enter monthly payment"
+                                            onChange={(event) => handleValue('monthly', event.target.value)}
                                         />
                                     </Grid>
                                 </Grid>
@@ -136,8 +169,13 @@ export default function LoanRepayForm() {
                 <Typography className={classes.margin} variant="h5">
                     Results 
                 </Typography>
-                <DashboardCard title="Loan Repayment Period (in years)" value={calculateResult()}/>
+                {
+                    result
+                }
             </div>
         </div>
     );    
 }
+
+//0.7505747245639722
+//0.6496384089476229
