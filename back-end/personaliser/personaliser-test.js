@@ -7,15 +7,18 @@ const CognitiveServicesCredentials = require('@azure/ms-rest-azure-js').Cognitiv
 const readline = require('readline-sync');
 // </Dependencies>
 
+const PERSONALIZER_KEY = "611ef96646c74ebfbc5c1c14b0776613";
+const PERSONALIZER_ENDPOINT = "https://monkey-brain.cognitiveservices.azure.com/";
+
 async function main() {
 
   // <AuthorizationVariables>
   // The key specific to your personalization service instance; e.g. "0123456789abcdef0123456789ABCDEF"
-  let serviceKey = process.env.PERSONALIZER_RESOURCE_KEY;
+  let serviceKey = PERSONALIZER_KEY;
 
   // The endpoint specific to your personalization service instance; 
   // e.g. https://westus2.api.cognitive.microsoft.com
-  let baseUri = process.env.PERSONALIZER_RESOURCE_ENDPOINT;
+  let baseUri = PERSONALIZER_ENDPOINT;
   // </AuthorizationVariables>
 
   // <Client>
