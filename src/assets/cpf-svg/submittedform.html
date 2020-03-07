@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-csp=""><head>
+	
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script type="text/javascript" async="" src="submittedform_files/recaptcha__en.js"></script><script type="text/javascript" async="" src="submittedform_files/analytics.js"></script><script src="submittedform_files/y4hV-dUE0RoRHRIgRO3-6xR2UC4.js"></script><script async="" src="submittedform_files/js"></script>
+		<script src="submittedform_files/datalayer"></script>
+	
+	<!--Embedding custom variables in window-->
+	<script src="submittedform_files/environment"></script>
+
+	<title>FormSG</title>
+
+    <!-- General META -->
+	<meta charset="utf-8">
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<!-- Semantic META -->
+	<meta name="keywords" content="forms, formbuilder, nodejs">
+	<meta name="description" content="Form Manager for Government">
+
+	<!-- Facebook META -->
+	<meta property="og:site_name" content="FormSG">
+	<meta property="og:title" content="FormSG">
+	<meta property="og:description" content="Form Manager for Government">
+	<meta property="og:url" content="https://form.gov.sg">
+	
+	<meta property="og:image" content="/public/modules/core/img/og/link-banner.png">
+	
+	<meta property="og:image" content="/public/modules/core/img/og/logo-vertical-color.png">
+	
+	<meta property="og:type" content="website">
+
+	<!-- Google META -->
+	<meta name="google-site-verification" content="-GaIEwTSKAhExD0SJRztGTk8qb6C_lXTKmjtgZSrIr0">
+
+	<!-- Twitter META -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="FormSG">
+	<meta name="twitter:description" content="Form Manager for Government">
+	<meta name="twitter:url" content="https://form.gov.sg">
+	<meta name="twitter:image" content="/public/modules/core/img/og/logo-vertical-color.png">
+
+	<!-- Fav Icon -->
+	<link href="https://form.gov.sg/public/modules/core/img/logomark.ico" rel="shortcut icon" type="image/x-icon">
+
+	<!-- Webpack CSS Files -->
+	<link rel="stylesheet" href="submittedform_files/bundle.css">
+
+	<!-- Webpack Google Font Files -->
+	<link rel="stylesheet" href="submittedform_files/woff.css">
+</head>
+
+<!-- App name must be FormSG, which is same as that defined in public/application.js -->
+<body ng-app="FormSG" class="ng-scope">
+
+	<!-- Route loading spinner -->
+	<route-loading-indicator>
+        <!-- ngIf: isRouteLoading --></route-loading-indicator>
+
+	<!-- uiView: --><section class="content ng-scope" ui-view="" style=""> <banner-component message="banner.msg" class="ng-scope ng-isolate-scope"><!-- ngIf: !vm.bannerHidden --> </banner-component> <section class="ng-scope"> <!-- ngIf: myform.isPreview --> <!-- ngIf: (myform.status === 'PUBLIC' || myform.isPreview) --><div ng-if="(myform.status === 'PUBLIC' || myform.isPreview)" class="public-form submit-form ng-scope"> <!-- ngIf: !myform.submitted --> <!-- ngIf: myform.submitted && !loading --><div ng-if="myform.submitted &amp;&amp; !loading" class="ng-scope" style=""> <form class="start-end-page text-center ng-pristine ng-valid"> <end-page-component logo-url="https://s3-ap-southeast-1.amazonaws.com/agency-logo.form.sg/cpfb.png" title="Thank you for filling out the form." paragraph="" button-text="Submit another form" button-link="" auth-type="NIL" is-admin-preview="false" color-theme="green" class="ng-isolate-scope"><div class="start-end-page text-center"> <!-- ngIf: vm.logoUrl --><div ng-if="vm.logoUrl" class="form-header ng-scope"> <center><img ng-src="https://s3-ap-southeast-1.amazonaws.com/agency-logo.form.sg/cpfb.png" src="submittedform_files/cpfb.png"></center> </div><!-- end ngIf: vm.logoUrl --> <div id="end-page-main-container" class="green-bg"> <div class="row"> <h2 id="end-page-title" data-test="endPage" class="ng-binding">Thank you for filling out the form.</h2> <div id="end-page-follow-up"> <p ng-bind-html="vm.paragraph | linky:'_blank'" class="ng-binding"></p> </div> <div id="end-page-btn-link"> <p ng-click="vm.customLinkReload()" ng-class="{'disable-link': vm.isAdminPreview}"> <span class="ng-binding">Submit another form</span> <!-- ngIf: !vm.buttonText --> </p> </div> <!-- ngIf: vm.authType!=='NIL' && vm.userName --> </div> </div> </div> </end-page-component> </form> </div><!-- end ngIf: myform.submitted && !loading --> <div class="padded-view"> <!-- ngIf: myform.submitted && !loading --><div ng-if="myform.submitted &amp;&amp; !loading" class="form-fields row ng-scope" style=""> <feedback-form-component is-preview="myform.isPreview" form-id="5ddb93c82361f900127f6c3a" color-theme="green" class="ng-isolate-scope"> <form name="feedback" class="col-sm-12 col-md-offset-1 col-md-10 ng-pristine ng-valid ng-valid-maxlength"> <div id="feedback-form-container"> <div ng-show="!vm.isSubmitted"> <h3 id="feedback-title" class="green-font"> How would you rate your overall experience today? </h3> <p id="feedback-description"> Help us improve by sharing with us how we did </p> <div class="feeling-field"> <label ng-class="vm.rating === '1' ? 'selected-feeling-field' : ''"> <input type="radio" value="1" ng-model="vm.rating" class="ng-pristine ng-untouched ng-valid ng-empty" name="133"> <img src="submittedform_files/angry.svg"> </label> <label ng-class="vm.rating === '2' ? 'selected-feeling-field' : ''"> <input type="radio" value="2" ng-model="vm.rating" class="ng-pristine ng-untouched ng-valid ng-empty" name="134"> <img src="submittedform_files/sad.svg"> </label> <label ng-class="vm.rating === '3' ? 'selected-feeling-field' : ''"> <input type="radio" value="3" ng-model="vm.rating" class="ng-pristine ng-untouched ng-valid ng-empty" name="135"> <img src="submittedform_files/neutral.svg"> </label> <label ng-class="vm.rating === '4' ? 'selected-feeling-field' : ''"> <input type="radio" value="4" ng-model="vm.rating" class="ng-pristine ng-untouched ng-valid ng-empty" name="136"> <img src="submittedform_files/ok.svg"> </label> <label ng-class="vm.rating === '5' ? 'selected-feeling-field' : ''"> <input type="radio" value="5" ng-model="vm.rating" class="ng-pristine ng-untouched ng-valid ng-empty" name="137"> <img src="submittedform_files/happy.svg"> </label> </div> <h3 id="feedback-sub-title"> Any other feedback? </h3> <textarea id="feedback-textfield" type="text" name="text-area-value" class="input-custom input-large ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-model="vm.comment" ng-maxlength="5000" ng-model-options="{ debounce: 250 }" ng-trim="false"></textarea> <button id="feedback-submit-btn" ng-disabled="vm.rating === null || feedback.$invalid || vm.isLoading" class="btn-custom btn-large green-bg" ng-click="vm.submitFeedback()" disabled="disabled"> Submit Feedback </button> </div> </div> </form> </feedback-form-component> </div><!-- end ngIf: myform.submitted && !loading --> </div> <div id="form-footer"> <div id="form-footer-logo"> <p>Powered By</p> <a ui-sref="landing" target="_blank" href="#!/"> <img src="submittedform_files/logo-vertical-light.svg"> </a> </div> <div class="row"> <div class="col-md-10 col-md-offset-1 col-sm-12"> <!-- ngIf: myform.hasCaptcha --><div vc-recaptcha="" key="captcha.publicKey" ng-if="myform.hasCaptcha" size="invisible" on-create="setCaptchaWidget(widgetId)" on-success="onCaptchaSuccess(response)" on-expire="expireCaptcha()" data-badge="inline" class="ng-scope ng-isolate-scope"><div class="grecaptcha-badge" data-style="inline" style="width: 256px; height: 60px; box-shadow: gray 0px 0px 5px;"><div class="grecaptcha-logo"><iframe src="submittedform_files/anchor.html" role="presentation" name="a-t5kj6gw97e8b" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" width="256" height="60" frameborder="0"></iframe></div><div class="grecaptcha-error"></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;">03AERD8Xp-wJhV4Jsx7QZ5ub01ktnTzQAOtWJOt3sTv-OaDbDWyhn0_jImLNdfKYCXYsixBX5pLQtJ4eGXqnvBnkpG8c2zFIDtp1kU8FBDF8iSWRB757cQC9Qu22hMp7eGIsOWPn5xufxElMU-sLRIWRzWDRot1jp2H4BCNxB_2OJIM8nr1pyGDLUprVH-idH4FXACPgdu7MLn2V7PwoSWXhvYYzckcHU7B7ShNTkMq1mMQoCqHNtvYXkhI1Cd55PeV4n3Y8pdu6pwwxmnzps_1YsMyl1wzFHovu5QhOS-ZhoPpVo97w2d3Fyr9KY5guvlTo9WxIzfPp2-7z_AxdfcS47RMws9XsB-8f3bMecbgfI9FILBDzecBgVmZlqpq-OClrL1CeLPm0huDKNiCvdjfy_uIicoe63SAQ</textarea></div></div><!-- end ngIf: myform.hasCaptcha --> </div> </div> </div> </div><!-- end ngIf: (myform.status === 'PUBLIC' || myform.isPreview) --> </section> <banner-component class="mobile ng-scope ng-isolate-scope" message="banner.msg"><!-- ngIf: !vm.bannerHidden --> </banner-component> </section>
+
+	<!-- Webpack JavaScript Files -->
+	<script src="submittedform_files/bundle.js"></script>
+
+
+
+
+<script async="" defer="defer" src="submittedform_files/api.js"></script><div style="visibility: hidden; position: absolute; width: 1027px; top: -10000px; left: 0px; right: 0px; transition: visibility 0s linear 0.3s, opacity 0.3s linear 0s; opacity: 0;"><div style="width: 100%; height: 100%; position: fixed; top: 0px; left: 0px; z-index: 2000000000; background-color: rgb(255, 255, 255); opacity: 0.5;"></div><div style="margin: 0px auto; top: 0px; left: 0px; right: 0px; position: absolute; border: 1px solid rgb(204, 204, 204); z-index: 2000000000; background-color: rgb(255, 255, 255); overflow: hidden; width: 400px; height: 580px;"><iframe title="recaptcha challenge" src="submittedform_files/bframe.html" style="width: 400px; height: 580px;" name="c-t5kj6gw97e8b" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" frameborder="0"></iframe></div></div></body></html>

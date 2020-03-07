@@ -7,12 +7,6 @@ import { Typography } from '@material-ui/core';
 import ContributionForm from './Forms/contributionCalc';
 import LoanRepayForm from './Forms/loanRepayment';
 
-const options = [
-  'First Home Calculator',
-  'Contribution Calculator',
-  'Education Monthly Instalment Rate Calculator',
-];
-
 const useStyles = makeStyles(theme => ({
     root: {
         fontWeight : theme.typography.fontWeightBold,        
@@ -26,8 +20,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const Calculator = function() {
+    const options = {
+        loan : 'First Home Calculator',
+        contribution : 'Contribution Calculator',
+        education: 'Education Monthly Instalment Rate Calculator'
+    };
+
     const classes = useStyles();
-    const func = 'loan'
+    let func = ''
     const ITEM_HEIGHT = 40;
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,15 +37,13 @@ export const Calculator = function() {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = option => {
         setAnchorEl(null);
+        func = option;
+        console.log(func);
     };
 
-    const handleFunc = param => {
-        func = param;
-    }
-    
-    const renderFunc = () => {
+    const renderFunc = func => {
         switch(func) {
             case 'contribution':
                 return <ContributionForm />
@@ -83,16 +81,17 @@ export const Calculator = function() {
                     },
                 }}
             >
-            {options.map(option => (
-                <MenuItem key={option} selected={option === 'Pyxis'} onClick={handleClose}>
-                {option}
-                </MenuItem>
-            ))}
+            {Object.entries(options).map(keyV => {
+                return(
+                    <MenuItem key={keyV[0]} onClick={() => handleClose(keyV[0])}>
+                        {keyV[1]}
+                    </MenuItem>    
+            )})}
             </Menu>
 
             <div className={classes.margin}>
                 {
-                    renderFunc()
+                    renderFunc('loan')
                 }
             </div>
         </div>
