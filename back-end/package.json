@@ -8,5 +8,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "@azure/cognitiveservices-personalizer": "^2.0.0",
+    "@azure/ms-rest-azure-js": "^2.0.1",
+    "@azure/ms-rest-js": "^2.0.5",
+    "readline-sync": "^1.4.10",
+    "uuid": "^7.0.2"
+  }
 }
