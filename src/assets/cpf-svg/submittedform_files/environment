@@ -1,0 +1,15 @@
+
+    // Singpass/Corppass maintenance message
+    var isSPMaintenance = ""
+    var isCPMaintenance = ""
+    var isGeneralMaintenance = ""
+    var isLoginBanner = "FormSG is on the WOG intranet, but if it doesn't work, let us know at https://go.gov.sg/formsg-intranet"
+    // Google Analytics
+    var GATrackingID = "UA-130216930-1"
+    // Recaptcha
+    var captchaPublicKey = "6Lchkl0UAAAAANw4DUdja4W6A5xFwuomkcaiqnkC"
+    // Sentry.IO
+    var sentryConfigUrl = "https://a6da524b405e4440bfef29457b51dfbc@sentry.io/1450832"
+    // S3 bucket
+    var logoBucketUrl = "https://s3.ap-southeast-1.amazonaws.com/logos.form.gov.sg"
+  

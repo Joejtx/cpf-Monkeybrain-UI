@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { loadCSS } from 'fg-loadcss';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
@@ -34,52 +34,75 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function LoanRepayForm() {
-    let principal = 0
-    let ir = 0
-    let monthlyPayment = 0;
+    // let principal = 0
+    // let ir = 0
+    // let monthlyPayment = 0;
     const classes = useStyles();
+
+    const [result, setResult] = React.useState(null);
+    const [principal, setPrincipal] = React.useState(null);
+    const [monthlyPayment, setMonthlyPayment] = React.useState(null);
+    const [ir, setIr] = React.useState(null);
 
     function handleValue(item, value) {
         switch(item) {
             case 'principal':
-                principal = value
-                result = renderResult()
+                // console.log("Principal is ", value)
+                // principal = value
+                setPrincipal(value)
+                // setResult(renderResult())
+                calculateResult()
+                break;
                 
             case 'monthly':
-                monthlyPayment = value
-                result = renderResult()
+                // monthlyPayment = value
+                setMonthlyPayment(value)
+                // setResult(renderResult())
+                calculateResult()
+                break
                 
             case 'ir':
-                ir = value
-                result = renderResult()
+                // console.log("IR is ", value)
+                // ir = value
+                setIr(value)
+                // setResult(renderResult())
+                calculateResult()
+                break
+            default:
+
                 
         }
     }
         
    function renderResult() {
-        return(
-            <DashboardCard title="Loan Repayment Period (in years)" value={(0.649*12).toFixed(2)}/>
-        )
+       console.log(`Inside renderResult ${ir}, ${monthlyPayment}, ${principal}`)
+        // console.log(finalValue)
+        if (isNaN(result)) {
+            return(
+                <DashboardCard title="Loan Repayment Period (in years)" value={"NIL"}/>
+            )
+        } else {
+            return(
+                // <DashboardCard title="Loan Repayment Period (in years)" value={(finalValue*12).toFixed(2)}/>
+                <DashboardCard title="Loan Repayment Period (in years)" value={result}/>
+            )
+        }
     }
 
+    
+
     function calculateResult() {
-        let value = 0
+        // let value = 0
         try {
-            value = Math.log(principal / monthlyPayment) / Math.log(1+ir/12)
-            console.log(value)
+            setResult(Math.log(principal / monthlyPayment) / Math.log(1+ir/12))
+            // return value
         } 
         catch(e) {
             console.log(e)
-            return "NIL"
-        }
-        if (isNaN(value)) {
-            return "NIL"
-        } else {
-            return value
+            setResult(null)
         }
     }
 
-    let result = renderResult()
 
     React.useEffect(() => {
         loadCSS(
@@ -170,7 +193,7 @@ export default function LoanRepayForm() {
                     Results 
                 </Typography>
                 {
-                    result
+                    renderResult()
                 }
             </div>
         </div>
