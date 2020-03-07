@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@azure/cognitiveservices-personalizer": "^2.0.0",
+    "@azure/ms-rest-azure-js": "^2.0.1",
+    "@azure/ms-rest-js": "^2.0.5",
     "@material-ui/core": "^4.9.3",
     "@material-ui/icons": "^4.9.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",
+    "create-react-app": "^3.4.0",
+    "eslint-config-react-app": "^5.2.0",
     "fg-loadcss": "^2.1.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.4.0"
+    "react-scripts": "3.4.0",
+    "readline-sync": "^1.4.10",
+    "uuid": "^7.0.2"
   },
   "scripts": {
     "start": "react-scripts start",
