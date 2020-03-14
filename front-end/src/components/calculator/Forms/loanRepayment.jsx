@@ -34,9 +34,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function LoanRepayForm() {
-    // let principal = 0
-    // let ir = 0
-    // let monthlyPayment = 0;
     const classes = useStyles();
 
     const [result, setResult] = React.useState(null);
@@ -69,8 +66,7 @@ export default function LoanRepayForm() {
                 calculateResult()
                 break
             default:
-
-                
+                break; 
         }
     }
         
@@ -87,15 +83,15 @@ export default function LoanRepayForm() {
                 <DashboardCard title="Loan Repayment Period (in years)" value={result}/>
             )
         }
-    }
-
-    
+    }    
 
     function calculateResult() {
         // let value = 0
         try {
-            setResult(Math.log(principal / monthlyPayment) / Math.log(1+ir/12))
-            // return value
+            const years = Math.log(principal / monthlyPayment) / Math.log(1+ir/12)
+            if (years > 0 & years < 100) {
+                setResult(years.toFixed(2))
+            }
         } 
         catch(e) {
             console.log(e)

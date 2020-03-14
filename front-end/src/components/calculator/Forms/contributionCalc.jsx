@@ -31,60 +31,50 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-export default class ContributionForm extends Component {
-    constuctor() {
-        this.state = {
-            classes: useStyles(),    
-        }
-        // const [setGroup] = React.useState();
-
+export default function ContributionForm() {
+    const classes = useStyles()
+    
+    function handleChange(val) {
+        console.log(val)
     }
-    
-    handleChange = event => {
-        this.setGroup(event.target.value);
-    };
-    
-    render() {
-        const { classes } = this.state;
-        return (
-            <form className={classes.root} noValidate autoComplete="off">
-                <div>
-                    <TextField
-                        id="outlined-select-employee-grp"
-                        select
-                        label="Native select"
-                        onChange={this.handleChange}
-                        SelectProps={{
-                            native: true,
-                        }}
-                        helperText="Please select your currency"
-                        variant="outlined"
-                        >
-                        {empGroup.map(option => (
-                            <option key={option.value} value={option.value}>
-                            {option.label}
-                            </option>
-                        ))}
-                    </TextField>
-                    <TextField 
-                        id="outlined-search" 
-                        label="Date of Birth (DD-MM-YYYY)" 
-                        type="search" 
-                        defaultValue="31-12-1996"
-                        variant="outlined"
-                    />
-                    <div className={this.state.classes.margin}>
-                        <Grid container spacing={1} alignItems="center">
-                            <Grid item>
-                                <Icon className="fas fa-dollar-sign" />
-                            </Grid>
-                            <Grid item>
-                                <TextField id="input-with-icon-grid" label="With a grid" />
-                            </Grid>
+    return (
+        <form className={classes.root} noValidate autoComplete="off">
+            <div>
+                <TextField
+                    id="outlined-select-employee-grp"
+                    select
+                    label="Native select"
+                    onChange={event => handleChange(event.target.value)}
+                    SelectProps={{
+                        native: true,
+                    }}
+                    helperText="Please select your currency"
+                    variant="outlined"
+                    >
+                    {empGroup.map(option => (
+                        <option key={option.value} value={option.value}>
+                        {option.label}
+                        </option>
+                    ))}
+                </TextField>
+                <TextField 
+                    id="outlined-search" 
+                    label="Date of Birth (DD-MM-YYYY)" 
+                    type="search" 
+                    defaultValue="31-12-1996"
+                    variant="outlined"
+                />
+                <div className={classes.margin}>
+                    <Grid container spacing={1} alignItems="center">
+                        <Grid item>
+                            <Icon className="fas fa-dollar-sign" />
                         </Grid>
-                    </div>
+                        <Grid item>
+                            <TextField id="input-with-icon-grid" label="With a grid" />
+                        </Grid>
+                    </Grid>
                 </div>
-            </form>
-        );
-    }
+            </div>
+        </form>
+    );
 }

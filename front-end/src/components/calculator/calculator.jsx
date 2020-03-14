@@ -1,9 +1,9 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
-import { Typography } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
+import { Autocomplete } from '@material-ui/lab';
+import { Typography, Menu, MenuItem } from '@material-ui/core';
 import ContributionForm from './Forms/contributionCalc';
 import LoanRepayForm from './Forms/loanRepayment';
 
@@ -19,6 +19,11 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+const top100Films = [
+    { title: 'Loan Repayment', short: 'loan' },
+    { title: 'Contribution', short: 'contribution' }
+]
+
 export const Calculator = function() {
     const options = {
         loan : 'First Home Calculator',
@@ -27,21 +32,7 @@ export const Calculator = function() {
     };
 
     const classes = useStyles();
-    let func = ''
-    const ITEM_HEIGHT = 40;
-
-    const [anchorEl, setAnchorEl] = React.useState(null);
-    const open = Boolean(anchorEl);
-
-    const handleClick = event => {
-        setAnchorEl(event.currentTarget);
-    };
-
-    const handleClose = option => {
-        setAnchorEl(null);
-        func = option;
-        console.log(func);
-    };
+    const [value, setValue] = React.useState(null);
 
     const renderFunc = func => {
         switch(func) {
@@ -53,45 +44,38 @@ export const Calculator = function() {
                 return ''
         }
     }
+    let autoStyles = {
+        marginLeft:'10%',
+        marginRight:'10%',
+        marginBottom: '2%',
+        textAlign: 'center'
+    }
 
     return (
         <div>
             <Typography className={classes.root} variant="h5">
                 Calculators 
             </Typography>
-            <Button
-                aria-label="more"
-                aria-controls="long-menu"
-                aria-haspopup="true"
-                variant="contained"
-                onClick={handleClick}
-            >
-                Select Function
-            </Button>
-            <Menu
-                id="long-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={open}
-                onClose={handleClose}
-                PaperProps={{
-                    style: {
-                    maxHeight: ITEM_HEIGHT * 4.5,
-                    width: 500,
-                    },
+            <Autocomplete
+                id="calc-select"
+                options={top100Films}
+                getOptionLabel={option => option.title}
+                style={autoStyles}
+                renderInput={params => <TextField {...params} 
+                                            label="Select Function" 
+                                            variant="outlined" 
+                                        />}
+                onChange={(event, newValue) => {
+                    if (newValue != null) {
+                        console.log(newValue)
+                        console.log(newValue.short)    
+                        setValue(newValue.short);
+                    }
                 }}
-            >
-            {Object.entries(options).map(keyV => {
-                return(
-                    <MenuItem key={keyV[0]} onClick={() => handleClose(keyV[0])}>
-                        {keyV[1]}
-                    </MenuItem>    
-            )})}
-            </Menu>
-
+            />
             <div className={classes.margin}>
                 {
-                    renderFunc('loan')
+                    renderFunc(value)
                 }
             </div>
         </div>
