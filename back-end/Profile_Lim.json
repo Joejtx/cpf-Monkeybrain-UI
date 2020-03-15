@@ -1,0 +1,16 @@
+{
+  "Profile":
+    {
+      "Name":"Lim",
+      "Age": "67",
+      "Gender": "M",
+      "Race": "Chinese",
+      "Children": "4",
+      "Married": "1",
+      "Income": "2600",
+      "Employment status": "1",
+      "Sickness urgency": "3",
+      "Investment interest": "1",
+      "Generosity": "4"
+    }
+}
