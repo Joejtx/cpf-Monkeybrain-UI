@@ -28,30 +28,6 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-function TabPanel(props) {
-    const { children, value, index, ...other } = props;
-  
-    return (
-        <Typography
-            component="div"
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && <CalculatorType cat={children} />}
-        </Typography>
-        //<Box p={3}>{children}</Box>
-    );
-}
-
-TabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.any.isRequired,
-    value: PropTypes.any.isRequired,
-};
-
 function a11yProps(index) {
     return {
       id: `scrollable-auto-tab-${index}`,
@@ -69,17 +45,37 @@ export const Calculator = function() {
       };
 
     const handleTabChange = val => {
-        switch(val) {
-            case 'Healthcare':
+        switch(val.toLowerCase()) {
+            case 'retirement':
                 setOptionsData([
-                    { title: 'Loan Repayment', short: 'loan', component: <LoanRepayForm />},
-                    { title: 'Contribution', short: 'contribution', component: <ContributionForm />}
+                    { title: 'CPF LIFE Estimator ',  component: ""},
+                    { title: 'CPF Withdrawal Calculator', component: ""},
                 ])
+                break;
+            case 'housing':
+                setOptionsData([
+                    { title: 'CPF Housing Usage Calculator', component: ""},
+                    { title: 'Loan Repayment Period Calculator', component: ""},
+                ])
+                break;
+            case 'healthcare':
+                setOptionsData([
+                    { title: 'Medisave/mediShoeld Life Claim Calculator', component: ""},
+                ])
+                break;
+            case 'self-employed scheme':
+                setOptionsData([
+                    { title: 'Self-Employed MediSave Instalment Calculator', component: ""},
+                    { title: 'Self-Employed MediSave Contribution Calculator', component: ""},
+                ])
+
+                break;
             default:
                 setOptionsData([
-                    { title: 'Loan Repayment', short: 'loan', component: <LoanRepayForm />},
-                    { title: 'Contribution', short: 'contribution', component: <ContributionForm />}
+                    { title: 'CPF Education Loan Repayment Period Calculator', component: <LoanRepayForm />},
+                    { title: 'Contribution', component: <ContributionForm />}
                 ])    
+                break;
         }
     }
 
@@ -100,7 +96,7 @@ export const Calculator = function() {
                     scrollButtons="auto"
                     aria-label="scrollable auto tabs example"
                 >
-                    <Tab label="Retirement" {...a11yProps(0)} onClick={event => console.log("retirement")} />
+                    <Tab label="Retirement" {...a11yProps(0)} onClick={event => handleTabChange('Retirement')} />
                     <Tab label="Housing" {...a11yProps(1)} onClick={event => handleTabChange('Housing')} />
                     <Tab label="Healthcare" {...a11yProps(2)} onClick={event => handleTabChange('Healthcare')} />
                     <Tab label="Self-employed Scheme" {...a11yProps(3)} onClick={event => handleTabChange('Self-employed Scheme')} />
@@ -116,18 +112,8 @@ export const Calculator = function() {
 
 function CalculatorType(props) {
     const classes = useStyles();
-    const [comp, setComp] = React.useState(null);
+    const [calcComp, setCalcComp] = React.useState(null);
 
-    // const renderFunc = func => {
-    //     switch(func) {
-    //         case 'contribution':
-    //             return <ContributionForm />
-    //         case 'loan':
-    //             return <LoanRepayForm />
-    //         default:
-    //             return ''
-    //     }
-    // }
     const autoStyles = {
         marginLeft:'10%',
         marginRight:'10%',
@@ -153,15 +139,13 @@ function CalculatorType(props) {
                                         />}
                 onChange={(event, newValue) => {
                     if (newValue != null) {
-                        console.log(newValue)
-                        console.log(newValue.short)    
-                        setComp(newValue.component);
+                        setCalcComp(newValue.component);
                     }
                 }}
             />
             <div className={classes.margin}>
                 {
-                    comp
+                    calcComp
                 }
             </div>
         </div>
