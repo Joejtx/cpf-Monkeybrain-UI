@@ -28,6 +28,13 @@ async function main() {
   let personalizerClient = new Personalizer.PersonalizerClient(credentials, baseUri);
   // </Client>
 
+  // <JSON>
+  let fs = require('fs');
+  let data = fs.readFileSync('../Profile_Arun.json', 'utf8');
+  let profile = JSON.parse(data);
+  //console.log(words.Age);
+  // </JSON>
+
 
   // <mainLoop>
   let runLoop = true;
@@ -35,13 +42,13 @@ async function main() {
   do {
 
     // <rank>
-    let rankRequest = {}
+    let rankRequest = {};
 
     // Generate an ID to associate with the request.
     rankRequest.eventId = uuidv1();
 
     // Get context information from the user.
-    rankRequest.contextFeatures = getContextFeaturesList();
+    rankRequest.contextFeatures = getContextFeaturesList(profile);
 
     // Get the actions list to choose from personalization with their features.
     rankRequest.actions = getActionsList();
@@ -96,17 +103,17 @@ function continueLoop() {
 function getReward() {
   var answer = readline.question("\nIs this correct (y/n)\n");
   if (answer.toLowerCase() === 'y') {
-    console.log("\nGreat| Enjoy your food.");
+    console.log("\nGreat| Enjoy your service.");
     return 1;
   }
-  console.log("\nYou didn't like the recommended food choice.");
+  console.log("\nYou didn't like the recommended choice.");
   return 0;
 }
 // </getReward>
 
 
 // <createUserFeatureTimeOfDay>
-function getContextFeaturesList() {
+function getContextFeaturesList_Original() {
   var timeOfDayFeatures = ['morning', 'afternoon', 'evening', 'night'];
   var tasteFeatures = ['salty', 'sweet'];
 
@@ -133,14 +140,76 @@ function getContextFeaturesList() {
 }
 // </createUserFeatureTimeOfDay>
 
+// <createUserFeatureTimeOfDay>
+function getContextFeaturesList(profile) {
+  //var timeOfDayFeatures = ['morning', 'afternoon', 'evening', 'night'];
+  //var tasteFeatures = ['salty', 'sweet'];
+  //var answer = readline.question("\nWhat time of day is it (enter number)? 1. morning 2. afternoon 3. evening 4. night\n");
+  //var selection = parseInt(answer);
+  //var timeOfDay = selection >= 1 && selection <= 4 ? timeOfDayFeatures[selection - 1] : timeOfDayFeatures[0];
+  //answer = readline.question("\nWhat type of food would you prefer (enter number)? 1. salty 2. sweet\n");
+  //selection = parseInt(answer);
+  //var taste = selection >= 1 && selection <= 2 ? tasteFeatures[selection - 1] : tasteFeatures[0];
+
+  //console.log("Selected features:\n");
+  //console.log("Time of day: " + timeOfDay + "\n");
+  //console.log("Taste: " + taste + "\n");
+
+  let my_Name = profile.Name;
+  let my_Age = parseInt(profile.Age);
+  let my_Gender = parseInt(profile.Gender);
+  let my_Race = profile.Race;
+  let my_Children = parseInt(profile.Children);
+  let my_Married = parseInt(profile.Married);
+  let my_Income = parseInt(profile.Income);
+  let my_Employment_status = parseInt(profile.Employment_Status);
+  let my_Sickness_urgency = parseInt(profile.Sickness_Urgency);
+  let my_Investment_interest = parseInt(profile.Investment_interest);
+  let my_Generosity = parseInt(profile.Generosity);
+
+  return [
+    {
+      "Age": my_Age
+    },
+    {
+      "Gender": my_Gender
+    },
+    {
+      "Race": my_Race
+    },
+    {
+      "Children": my_Children
+    },
+    {
+      "Married": my_Married
+    },
+    {
+      "Income": my_Income
+    },
+    {
+      "Employment_Status": my_Employment_status
+    },
+    {
+      "Sickness_urgency": my_Sickness_urgency
+    },
+    {
+      "Investment_interest": my_Investment_interest
+    },
+    {
+      "Generosity": my_Generosity
+    }
+  ];
+}
+// </createUserFeatureTimeOfDay>
+
 function getExcludedActionsList() {
   return [
-    "juice"
+    "Age"
   ];
 }
 
 // <getActions>
-function getActionsList() {
+function getActionsList_Original() {
   return [
     {
       "id": "pasta",
@@ -191,6 +260,61 @@ function getActionsList() {
         },
         {
           "nutritionLevel": 8
+        }
+      ]
+    }
+  ];
+}
+// </getActions>
+
+// <getActions>
+function getActionsList() {
+  return [
+    {
+      "id": "Apply HDB",
+      "features": [
+        {
+          "Married": 1,
+          "Children": 1,
+          "Employment Status": 1
+        }
+      ]
+    },
+    {
+      "id": "Withdraw from CPF",
+      "features": [
+        {
+          "Age": 65,
+          "Sickness_Urgency": 1,
+          "Employment_Status": 0
+        }
+      ]
+    },
+    {
+      "id": "Invest Money",
+      "features": [
+        {
+          "Age": 30,
+          "Children": 1,
+          "Income":
+              {
+                "minimum": 5000,
+                "maximum": 1000000
+              }
+        }
+      ]
+    },
+    {
+      "id": "Contribute CPF for employees",
+      "features": [
+        {
+          "Investment_interest": 1,
+          "Generosity": 2,
+          "Income":
+              {
+                "Minimum": 10000,
+                "Maximum": 10000000
+              }
         }
       ]
     }
