@@ -6,7 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { AttachMoney } from '@material-ui/icons';
 import { Typography } from '@material-ui/core';
 import Icon from '@material-ui/core/Icon';
-import { DashboardCard } from '../../card/card';
+import { DashboardCard } from '../../../card/card';
 
 const useStyles = makeStyles(theme => ({
     root: {

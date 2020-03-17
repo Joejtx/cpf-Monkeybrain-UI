@@ -3,13 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { Autocomplete } from '@material-ui/lab';
 import { Typography } from '@material-ui/core';
-import ContributionForm from './Forms/contributionCalc';
-import LoanRepayForm from './Forms/loanRepayment';
-import PropTypes from 'prop-types';
+import LoanRepayForm from './Forms/Others/loanRepayment';
 import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import Box from '@material-ui/core/Box';
+import CpfWithdrawal from './Forms/Health/healthCalc';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -42,14 +40,14 @@ export const Calculator = function() {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-      };
+    };
 
     const handleTabChange = val => {
         switch(val.toLowerCase()) {
             case 'retirement':
                 setOptionsData([
                     { title: 'CPF LIFE Estimator ',  component: ""},
-                    { title: 'CPF Withdrawal Calculator', component: ""},
+                    { title: 'CPF Withdrawal Calculator', component: <CpfWithdrawal />},
                 ])
                 break;
             case 'housing':
@@ -73,13 +71,13 @@ export const Calculator = function() {
             default:
                 setOptionsData([
                     { title: 'CPF Education Loan Repayment Period Calculator', component: <LoanRepayForm />},
-                    { title: 'Contribution', component: <ContributionForm />}
+                    { title: 'Contribution', component: ""}
                 ])    
                 break;
         }
     }
 
-    let comp = "";
+    let comp = ""
     if (optionsData != null) {
         comp = <CalculatorType data={optionsData} />
     }

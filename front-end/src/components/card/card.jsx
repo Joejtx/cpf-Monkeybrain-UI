@@ -62,6 +62,12 @@ export const DashboardCard = function(prop) {
       textAlign: "left",
       verticalAlign: "center"
     },
+    sub: {
+      fontSize: 16,
+      fontWeight: theme.typography.fontWeightBold,
+      textAlign: "left",
+      verticalAlign: "center"
+    },
     pushRight: {
       flexGrow: 1,
     },
@@ -77,11 +83,11 @@ export const DashboardCard = function(prop) {
       <Card className={classes.cardRoot} variant="outlined">
         <CardContent>
           <Grid container spacing={3}>
-            <Grid item xs={4}>
+            <Grid item xs={7}>
               <Typography className={classes.title} color="textPrimary">
                 {prop.title}
               </Typography>
-              <Typography className={classes.title} color="textSecondary">
+              <Typography className={classes.sub} color="textPrimary">
                 {prop.moreInfo}
               </Typography>
             </Grid>
